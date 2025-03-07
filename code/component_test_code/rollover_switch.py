@@ -25,10 +25,15 @@ it.start()
 switch_input = board.get_pin('d:10:i')
 LED = board.get_pin('d:13:o')
 
+score = 0
 while True:
     switch = switch_input.read()
     if switch is True:
         LED.write(1)
+        score = score + 10
+        print(score)
+        # sleep time seemingly is long enough that one rollover wont trigger multiple times.
+        time.sleep(0.2)
     else:
         LED.write(0)
     # Note on refresh rate, may need to be higher (check more than 10 times a second) depending upon how long the switch is closed for.
